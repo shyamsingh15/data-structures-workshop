@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+int check_valid_or_not(string ,int);
+int main()
+{
+    int i;
+    string str;
+    cout<<"enter string symbol like parenthisis  :";
+    cin>>str;
+    for(i=0;str[i];i++);
+    int l=i;
+    if(check_valid_or_not(str,l))
+    cout<<"  Is valid  "<<endl;
+    else
+    cout<<"  Is invalid "<<endl;
+    return 0;
+    
+}
+int check_valid_or_not(string str,int l)
+{
+ 	stack <char> st; 
+	for (int i=0; i<l; i++) 
+	{ 
+		if (str[i]=='('||str[i]=='['||str[i]=='{') 
+		{ 
+			st.push(str[i]); 
+			continue; 
+		}
+		if (st.empty()) 
+		return 0; 
+        char x;
+		while (str[i]!='\0') 
+		{ 
+		if(str[i]==')') 
+		{
+			x = st.top(); 
+			st.pop(); 
+			if (x=='{' || x=='[') 
+				return 0; 
+			break;
+		}
+
+		if(str[i]=='}') 
+        {
+			x = st.top(); 
+			st.pop(); 
+			if (x=='(' || x=='[') 
+				return 0; 
+			break; 
+        }
+		if(str[i]== ']')
+        {
+     		x = st.top(); 
+			st.pop(); 
+			if (x =='(' || x == '{') 
+				return 0; 
+			break; 
+		} 
+	} 
+}
+	return (st.empty()); 
+}
+
