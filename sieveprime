@@ -1,0 +1,44 @@
+
+  #include<bits/stdc++.h>
+  #include <cstring>
+
+    using namespace std;
+
+      bool a[100001];
+      bool isprime(int n)
+      {
+          if(n>=2)
+          {
+            if(a[n]==true)
+             return true;
+          }
+        return false;
+      }
+
+      void setprime()
+      {
+          int i,j;
+          for(i=0;i<=100000;i++)
+            a[i]=true;
+         for(i=2;i*i<=100000;i++)
+         {
+             if(a[i]==true)
+             {
+               for(j=i*i;j<100001;j+=i)
+                a[j]=false;
+             }
+         }
+      }
+
+      int main()
+      {
+          int n;
+          cout<<"enter a number to check prime::";
+          cin>>n;
+          setprime();
+          if(isprime(n))
+            cout<<"number is prime";
+          else
+            cout<<"number is not prime";
+          return 0;
+      }
